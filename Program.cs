@@ -1,55 +1,54 @@
-﻿// Напишите программу, которая на вход принимает два числа и выдаёт, какое число большее, а какое меньшее.
-Console.WriteLine("введите два числа");
-int num1 = Convert.ToInt32(Console.ReadLine());
-int num2 = Convert.ToInt32(Console.ReadLine());
-if (num1 > num2)
+// 1.  ***** Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.*****
+
+System.Console.WriteLine($"Введите число");
+int number = Convert.ToInt32(Console.ReadLine()); 
+if ((number % 10) == (number / 10000) && ((number % 100) / 10) == ((number / 1000) % 10))
 {
-    System.Console.WriteLine($" {num1} больше {num2}");
-}
-if (num1 < num2)
-{
-    System.Console.WriteLine($" {num2} больше {num1}");
+    System.Console.WriteLine($"число {number} является палиндромом");
 }
 
-//Напишите программу, которая принимает на вход три числа и выдаёт максимальное из этих чисел.
+else System.Console.WriteLine($"число {number} не является палиндромом");
 
-Console.WriteLine("введите три числа");
-int num1 = Convert.ToInt32(Console.ReadLine());
-int num2 = Convert.ToInt32(Console.ReadLine());
-int num3 = Convert.ToInt32(Console.ReadLine());
-if (num1 > num2 && num1 > num3)
+// 2. ******Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве. ******
+
+int x1 = Coordinate("x", "A");
+int y1 = Coordinate("y", "A");
+int z1 = Coordinate("z", "A");
+int x2 = Coordinate("x", "B");
+int y2 = Coordinate("y", "B");
+int z2 = Coordinate("z", "B");
+
+int Coordinate(string coorName, string pointName)
 {
-    Console.WriteLine($"максимальное число {num1}");
-}
-if (num2 > num1 && num2 > num3)
-{
-    Console.WriteLine($"максимальное число {num2}");
-}
-if (num3 > num2 && num3 > num1)
-{
-    Console.WriteLine($"максимальное число {num3}");
+    Console.Write($"Введите координату {coorName} точки {pointName}: ");
+    return Convert.ToInt16(Console.ReadLine());
 }
 
-//Напишите программу, которая на вход принимает число и выдаёт, является ли число чётным (делится ли оно на два без остатка).
-
-Console.WriteLine("введите числo");
-int num1 = Convert.ToInt32(Console.ReadLine());
-if (num1 % 2 == 0)
-{
-    Console.WriteLine($"Число {num1} четное");
+double Decision(double x1, double x2, 
+                double y1, double y2, 
+                double z1, double z2){
+  return Math.Sqrt(Math.Pow((x2-x1), 2) + 
+                   Math.Pow((y2-y1), 2) + 
+                   Math.Pow((z2-z1), 2));
 }
-Console.WriteLine($"Число {num1} нечетное");
 
-// Напишите программу, которая на вход принимает число (N), а на выходе показывает все чётные числа от 1 до N.
+double segmentLength =  Math.Round (Decision(x1, x2, y1, y2, z1, z2), 2 );
+Console.WriteLine($"Длина отрезка  {segmentLength}");
 
-Console.WriteLine("введите числo");
-int num1 = Convert.ToInt32(Console.ReadLine());
-int count = 1;
-while (count <= num1)
+//*******3.Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.******
+
+System.Console.WriteLine($"Введите число ");
+int countnumber = Convert.ToInt32(Console.ReadLine()); 
+
+
+void Fun( int number)
 {
-    if (count % 2 == 0)
+    int i = 1;
+    while(i<= number)
     {
-        System.Console.WriteLine($"{count}");
-        count++;
+        System.Console.WriteLine($"{i} -> {i*i*i}");
+        i++;
     }
-}
+}    
+
+Fun(countnumber)
