@@ -1,87 +1,69 @@
+// Задача 64: Задайте значение N. Напишите программу, которая выведет все натуральные числа в промежутке от N до 1
 
-//Задача 41: Пользователь вводит с клавиатуры числа через запятую. Посчитайте, сколько чисел больше 0 ввёл пользователь. 0, 7, 8, -2, -2 -> 2 -1, -7, 567, 89, 223-> 3
-
-Console.Write("Введите числа через запятую: ");
-int[] numbers = StringToNum(Console.ReadLine());
-PrintArray(numbers);
-int sum = 0;
-for (int i = 0; i < numbers.Length; i++)
+int n = InputInt("Введите положительное число");
+int m = 1;
+if (n < 1)
 {
-    if (numbers[i] > 0)
-    {
-        sum++;
-    }
+    Console.WriteLine("Ввели не положительное число");
 }
-Console.WriteLine();
-Console.WriteLine($"количество значений больше 0 = {sum}");
+Console.WriteLine(NaturalNumber(n, m));
 
-
-int[] StringToNum(string input)
+int NaturalNumber(int n, int m)
 {
-    int count = 1;
-    for (int i = 0; i < input.Length; i++)
-    {
-        if (input[i] == ',')
-        {
-            count++;
-        }
-    }
+    if (n == m)
+        return n;
+    else
+        Console.Write($"{NaturalNumber(n, m + 1)}, ");
+    return m;
+}
 
-    int[] numbers = new int [count];
-    int index = 0;
+int InputInt(string output)
+{
+    Console.Write(output);
+    return int.Parse(Console.ReadLine());
+}
 
-    for (int i = 0; i < input.Length; i++)
-    {
-        string temp = "";
+// Задача 66: Задайте значения M и N. Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
 
-        while (input [i] != ',')
-        {
-        if(i != input.Length - 1)
-        {
-            temp += input [i].ToString();
-            i++;
-        }
-        else
-        {
-            temp += input [i].ToString();
-            break;
-        }
-        }
-        numbers[index] = Convert.ToInt32(temp);
-        index++;
-    }
-    return numbers;
+
+int m = InputInt("Введите M:");
+int n = InputInt("Введите N:");
+Console.WriteLine($"Сумма элементов от {m} до {n} = {CountNaturalSum(m, n)}");
+
+int InputInt(string output)
+{
+    Console.Write(output);
+    return int.Parse(Console.ReadLine());
+}
+
+int CountNaturalSum(int m, int n)
+{
+    if (m == n)
+        return n;
+    return n + CountNaturalSum(m, n - 1);
 }
 
 
-void PrintArray(int[] array)
+// Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+
+
+Console.WriteLine("Введите два положительных числа: M и N.");
+int m = InputInt("Введите M: ");
+int n = InputInt("Введите N: ");
+Console.WriteLine($"A({m}, {n}) = {Akkerman(m, n)}");
+
+int InputInt(string output)
 {
-    Console.Write("[ ");
-    for (int i = 0; i < array.Length; i++)
-    {
-        Console.Write(array[i] + " ");
-    }
-    Console.Write("]");
+    Console.Write(output);
+    return int.Parse(Console.ReadLine());
 }
 
-// Задача 43. Напишите программу, которая найдёт точку пересечения двух прямых,  заданных уравнениями  y = k1 * x + b1  y = k2 * x + b2  значения b1, k1, b2 и k2 задаются пользователем.
-
-Console.WriteLine("введите значение b1");
-double b1 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("введите число k1");
-double k1 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("введите значение b2");
-double b2 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("введите число k2");
-double k2 = Convert.ToInt32(Console.ReadLine());
-
-double x = (-b2 + b1)/(-k1 + k2);
-double y = k2 * x + b2;
-
-Console.WriteLine($"две прямые пересекутся в точке с координатами X: {x}, Y: {y}");
-  
-
-
-           
-                
-   
+int Akkerman(int m, int n)
+{
+    if (m == 0)
+        return n + 1;
+    if (m > 0 && n == 0)
+        return Akkerman(m - 1, 1);
+    else
+        return Akkerman(m - 1, Akkerman(m, n - 1));
+}
