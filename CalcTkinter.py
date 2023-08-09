@@ -9,12 +9,20 @@ def input_main(symbol): # добавление символов в основн�
      main_windows.insert(END,symbol)
 
 def symbol(symbol: str):
+
     if '=' not in temp_windows.get():
 
         temp_windows.insert(END, f'{ubrat_nol(main_windows.get())}{symbol}')
         main_windows.delete(0,END)
+
     else:
+        x =temp_windows.get()
+        x = x[x.find('=') +1 :]
         temp_windows.delete(0,END)
+        # x = temp_windows.get()
+        # print(x)
+        temp_windows.insert(END, f'{x}{symbol}')
+        # main_windows.delete(0,END)
 
 
 def ubrat_nol(num: str) -> str: # убирает лишнии нули после запятой, работает только с float
@@ -29,16 +37,26 @@ def input_point(symbol): # вывод точки
 def clin(): # очистить все
     main_windows.delete(0,END)
     temp_windows.delete(0,END)
-
+result = 0
 def calc():
     temp_windows.insert(END,main_windows.get())
     main_windows.delete(0, END)
     expression = temp_windows.get()
-    result = 0
+
     if '+' in expression:
         split_text = expression.split('+')
         result = float(split_text[0]) + float(split_text[1])
-    temp_windows.insert(END,f'={result}')
+    elif'*' in expression:
+        split_text = expression.split('*')
+        result = float(split_text[0]) * float(split_text[1])
+    if '/' in expression:
+        split_text = expression.split('/')
+        result = float(split_text[0]) / float(split_text[1])
+    if '-' in expression:
+        split_text = expression.split('-')
+        result = float(split_text[0]) - float(split_text[1])
+
+    temp_windows.insert(END,f'={ubrat_nol(result)}')
 
 
 
