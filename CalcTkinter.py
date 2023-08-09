@@ -1,4 +1,5 @@
 from tkinter import *
+from math import *
 
 win = Tk()
 win.geometry(f'400x470+100+200')
@@ -12,14 +13,13 @@ def symbol(symbol: str):
 
     if '=' not in temp_windows.get():
 
-        temp_windows.insert(END, f'{ubrat_nol(main_windows.get())}{symbol}')
+        temp_windows.insert(END, f'{main_windows.get()}{symbol}')
         main_windows.delete(0,END)
 
     else:
         x =temp_windows.get()
         x = x[x.find('=') +1 :]
         temp_windows.delete(0,END)
-
         temp_windows.insert(END, f'{x}{symbol}')
 
 
@@ -56,7 +56,11 @@ def calc():
         result = float(split_text[0]) - float(split_text[1])
 
     temp_windows.insert(END,f'={ubrat_nol(result)}')
+def calc_koren(): # вычисляем корень из числа 
 
+    result = ubrat_nol(sqrt(float(main_windows.get())))
+    temp_windows.insert(END,result)
+    main_windows.delete(0,END)
 
 
 
@@ -104,7 +108,5 @@ btn_sum = Button(win, bg = '#2a4858', fg = 'white', text = '+',font=('', 20), co
 btn_sum.place(x = 256, y = 150, width = 50, height= 102, )
 btn_calc = Button(win, bg = '#2a4858', fg = 'white', text = '=',font=('', 20), command = lambda : calc())
 btn_calc.place(x = 256, y = 254, width = 50, height= 102, )
-
-
-
-win.mainloop()
+btn_koren = Button(win, bg = '#2a4858', fg = 'white', text = '√',font=('', 20), command = lambda : calc_koren())
+btn_koren.place(x = 308, y = 98, width = 50, height= 50, )
