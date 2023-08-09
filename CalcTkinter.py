@@ -19,10 +19,9 @@ def symbol(symbol: str):
         x =temp_windows.get()
         x = x[x.find('=') +1 :]
         temp_windows.delete(0,END)
-        # x = temp_windows.get()
-        # print(x)
+
         temp_windows.insert(END, f'{x}{symbol}')
-        # main_windows.delete(0,END)
+
 
 
 def ubrat_nol(num: str) -> str: # убирает лишнии нули после запятой, работает только с float
