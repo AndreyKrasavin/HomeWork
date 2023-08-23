@@ -1,6 +1,3 @@
-
-
-
 import sqlite3 as sl
 
 con = sl.connect("BAZA.db")
@@ -68,8 +65,12 @@ def add_into_empty():
 
 def del_users():
     me = input('Кого удалить?')
-    cur.execute(f"DELETE FROM users WHERE name='{me.capitalize()}'")
-    print(f'>>> {me} <<<  вышел(а) из чата')
+    x = cur.execute(f"DELETE FROM users WHERE name='{me.capitalize()}'")
+    x = x.fetchall()
+    if x == []:
+        print('Такого контакта нет')
+    else:
+        print(f'>>> {me} <<<  вышел(а) из чата')
     con.commit()
 
 def search_contact():
