@@ -1,3 +1,7 @@
+
+# ЕСЛИ ВЫ ЧИТАЕТЕ ЭТО, ТО ЗАЙДИТЕ ПОЖАЛУЙСТА ВЕЧЕРОМ !!!!
+
+
 import sqlite3 as sl
 
 con = sl.connect("gb.db")
