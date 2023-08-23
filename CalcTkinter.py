@@ -110,3 +110,7 @@ btn_calc = Button(win, bg = '#2a4858', fg = 'white', text = '=',font=('', 20), c
 btn_calc.place(x = 256, y = 254, width = 50, height= 102, )
 btn_koren = Button(win, bg = '#2a4858', fg = 'white', text = '√',font=('', 20), command = lambda : calc_koren())
 btn_koren.place(x = 308, y = 98, width = 50, height= 50, )
+
+
+
+win.mainloop()
