@@ -25,8 +25,7 @@ def create_table():
     con.commit()
 
 #create_table()
-def repeat(me):
-    x = cur.execute(f"select name from users where name = '{me}'")
+
 
 def add_into_empty():
     me = input('name? ')
