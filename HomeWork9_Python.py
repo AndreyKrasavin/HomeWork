@@ -1,11 +1,11 @@
 
 # ЕСЛИ ВЫ ЧИТАЕТЕ ЭТО, ТО ЗАЙДИТЕ ПОЖАЛУЙСТА ВЕЧЕРОМ !!!!
 
-
 import sqlite3 as sl
 
-con = sl.connect("gb.db")
+con = sl.connect("BAZA.db")
 cur = con.cursor()
+
 
 def show_data(): # показываем все записи таблицы users
     cur.execute("select * from users")
@@ -26,17 +26,49 @@ def create_table():
     )""")
 
     con.commit()
-def add_into_empty():#если таблица пустая то добавляется 2 записи
+
+#create_table()
+def repeat(me):
+    x = cur.execute(f"select name from users where name = '{me}'")
+
+def add_into_empty():
     me = input('name? ')
+    while True:
+        me = me.capitalize()
+        x = cur.execute(f"select name from users where name = '{me}'")
+        if x.fetchall() == []:
+            break
+        else:
+            x = cur.execute(f"select name from users where name = '{me}'")
+            s = x.fetchall()
+            if me in s[0][0] :
+                q = cur.execute(f"select * from users where name = '{me}'")
+                print(f"Такой контакт уже есть {q.fetchall()}")
+                me = input('Введи другое имя? >>>')
+
     tel = input('numbers? ')
+    while True:
+        if len(tel) == 11 and tel[0] == '8':
+            break
+        elif tel == '':
+            tel = 'Номера телефона нет'
+            print(tel)
+            break
+        else:
+            print('ERROR')
+            tel = input('Номер с восьмеркой и 11 цифр')
     mail = input('mail?')
 
+
+
+
     cur.execute("INSERT INTO users (name, numTel , mail) VALUES (?,?,?)",(me.capitalize(),tel,mail))
+    print(f'Добавили {me} ')
     con.commit()
 
 def del_users():
     me = input('Кого удалить?')
-    cur.execute(f"DELETE FROM users WHERE name='{me}'")
+    cur.execute(f"DELETE FROM users WHERE name='{me.capitalize()}'")
     print(f'>>> {me} <<<  вышел(а) из чата')
     con.commit()
 
@@ -67,6 +99,6 @@ while True:
         break
 
 
-# create_table()
+
 
 print('Вышли')
