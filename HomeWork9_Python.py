@@ -25,7 +25,8 @@ def create_table():
     con.commit()
 
 #create_table()
-
+def repeat(me):
+    x = cur.execute(f"select name from users where name = '{me}'")
 
 def add_into_empty():
     me = input('name? ')
@@ -80,12 +81,14 @@ def search_contact():
 
 
 while True:
+    x = cur.execute("select * from users")
     print("""Что сделаем ? 
 1. Посмотреть контакты ?
 2. Добавить контакт ?
 3. Удалить контакт ?
 4. Найти контакт ?
 5. Выйти? """)
+    print(f"Контактов в записной книжке {len(x.fetchall())}")
     answer = input('>>>')
     if answer == '2':
         add_into_empty()
