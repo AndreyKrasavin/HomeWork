@@ -11,7 +11,7 @@ def show_data(): # показываем все записи таблицы users
 
 def create_table():
 
-#создаем пустую таблицу users со столбцами id, name, age если ее не было в БД
+#создаем пустую таблицу users со столбцами id, name, age если ее не было в БД.
 
     cur.execute("""CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
