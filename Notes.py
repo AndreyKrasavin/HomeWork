@@ -1,5 +1,6 @@
 import sqlite3 as sl
 
+
 con = sl.connect("BAZA.db")
 cur = con.cursor()
 
