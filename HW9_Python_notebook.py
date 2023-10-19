@@ -81,6 +81,7 @@ def search_contact():
 
 
 while True:
+    create_table()
     x = cur.execute("select * from users")
     print("""Что сделаем ? 
 1. Посмотреть контакты ?
